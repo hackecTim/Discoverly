@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../Scripts/config.php";
+include "../Scripts/Config.php";
 
 
 if (!isset($_SESSION['userID'])) {
@@ -100,3 +100,4 @@ $user = $result->fetch_assoc();
 
 </body>
 </html>
+
