@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "config.php";
+include "Config.php";
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     exit();
 }
 ?>
+
 
 
 
