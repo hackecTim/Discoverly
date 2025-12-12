@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "config.php";
+include "Config.php";
 
 if (!isset($_SESSION['userID'])) {
     header("Location: ../login.php?error=loginrequired");
@@ -69,3 +69,4 @@ if ($stmt->execute()) {
     die("Database error: " . $stmt->error);
 }
 ?>
+
