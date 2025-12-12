@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../Scripts/config.php";
+include "../Scripts/Config.php";
 
 if (!isset($_SESSION['userID'])) {
     header("Location: login.php?error=notloggedin");
