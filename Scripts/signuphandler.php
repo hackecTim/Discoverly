@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+include "Config.php";
 $error = "1";
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -44,3 +44,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup'])) {
     }
 }
 ?>
+
