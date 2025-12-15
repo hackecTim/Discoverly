@@ -63,13 +63,13 @@ if (!empty($new_pass)) {
 
     $hashed = password_hash($new_pass, PASSWORD_BCRYPT);
 
-    $sql = "UPDATE Users SET username = ?, email = ?, password = ? WHERE user_id = ?";
+    $sql = "UPDATE Users SET username = ?, email = ?, password = ? WHERE userID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssi", $new_username, $new_email, $hashed, $user_id);
 
 } else {
 
-    $sql = "UPDATE Users SET username = ?, email = ? WHERE user_id = ?";
+    $sql = "UPDATE Users SET username = ?, email = ? WHERE userID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssi", $new_username, $new_email, $user_id);
 }
@@ -87,4 +87,5 @@ if ($stmt->execute()) {
     exit();
 }
 ?>
+
 
