@@ -21,11 +21,11 @@ $initials = strtoupper(substr($user['username'], 0, 2));
 
 $user_id = $_SESSION['userID'];
 
-/*$sql_places = "SELECT * FROM Place WHERE userID = ?";
+$sql_places = "SELECT * FROM Place WHERE userID = ?";
 $stmt_places = $conn->prepare($sql_places);
 $stmt_places->bind_param("i", $user_id);
 $stmt_places->execute();
-$result_places = $stmt_places->get_result();*/
+$result_places = $stmt_places->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">
