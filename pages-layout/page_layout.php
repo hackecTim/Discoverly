@@ -10,9 +10,9 @@ if (!isset($_GET['placeID'])) {
 $placeID = 1;//intval($_GET['placeID']);
 
 
-$sql = "SELECT Review.*, User.username
+$sql = "SELECT Review.*, Users.username
         FROM Review
-        JOIN User ON Review.userID = User.userID
+        JOIN Users ON Review.userID = Users.userID
         WHERE Review.placeID = ?
         ORDER BY Review.reviewID DESC";
 
