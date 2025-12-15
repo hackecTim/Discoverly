@@ -13,8 +13,8 @@ if (!isset($_SESSION['userID'])) {
 <head>
 <meta charset="UTF-8">
 <title>Create New Place - Discoverly</title>
-
-<link rel="stylesheet" href="../Style/createExp.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/createExp.css">
 <script src="../Scripts/createExp.js"></script> 
 
 </head>
@@ -116,3 +116,4 @@ if (!isset($_SESSION['userID'])) {
 
 </body>
 </html>
+
