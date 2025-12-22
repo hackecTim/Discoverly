@@ -30,6 +30,20 @@ $ratingData = $stmt2->get_result()->fetch_assoc();
 
 $avgRating = $ratingData['avgRating'] ? number_format($ratingData['avgRating'], 1) : "0.0";
 $totalReviews = $ratingData['totalReviews'];
+
+$sql2 = "SELECT AVG(rating) AS avgRating, COUNT(*) AS totalReviews 
+         FROM Review 
+         WHERE placeID = ?";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->bind_param("i", $placeID);
+$stmt2->execute();
+$ratingData = $stmt2->get_result()->fetch_assoc();
+
+$avgRating = $ratingData['avgRating']
+    ? number_format($ratingData['avgRating'], 1)
+    : "0.0";
+
+$totalReviews = (int)$ratingData['totalReviews'];
 /*
 
 
@@ -633,10 +647,22 @@ crossorigin=""></script>
 <div>
 <h3>Reviews</h3>
 <div class="overall-rating">
-<span class="rating-number">4.8</span>
-<div>
-<div class="rating-stars">★★★★★</div>
-<div class="rating-count">Based on 127 reviews</div>
+<span class="rating-number"><?= $avgRating ?></span>
+
+<div class="rating-stars">
+<?php
+    $fullStars = floor($avgRating);
+    $halfStar  = ($avgRating - $fullStars) >= 0.5;
+    $emptyStars = 5 - $fullStars - ($halfStar ? 1 : 0);
+
+    echo str_repeat("★", $fullStars);
+    if ($halfStar) echo "½";
+    echo str_repeat("☆", $emptyStars);
+?>
+</div>
+
+<div class="rating-count">
+    Based on <?= $totalReviews ?> review<?= $totalReviews == 1 ? "" : "s" ?>
 </div>
 </div>
 </div>
