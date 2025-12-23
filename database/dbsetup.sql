@@ -47,10 +47,13 @@ CREATE TABLE Review (
 );
 
 CREATE TABLE Wishlist (
+    wishlistID INT AUTO_INCREMENT PRIMARY KEY,
     userID INT NOT NULL,
     placeID INT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    PRIMARY KEY (userID, placeID),
+    CONSTRAINT uq_user_place
+        UNIQUE (userID, placeID),
 
     CONSTRAINT fk_wishlist_user
         FOREIGN KEY (userID) REFERENCES Users(userID)
