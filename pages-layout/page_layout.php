@@ -1,14 +1,28 @@
 <?php
 session_start();
-include "../Scripts/Config.php";
 
-/*
-if (!isset($_GET['placeID'])) {
-    die("Missing place ID");
+// Connect to database
+$conn = new mysqli("localhost", "root", "Root123!@#", "discoverly");
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-*/
-$placeID = 1; // intval($_GET['placeID']);
 
+// Get place ID from URL (default to 1)
+$placeID = isset($_GET['placeID']) ? intval($_GET['placeID']) : 1;
+
+// GET PLACE DETAILS
+$sqlPlace = "SELECT * FROM Place WHERE placeID = ?";
+$stmtPlace = $conn->prepare($sqlPlace);
+$stmtPlace->bind_param("i", $placeID);
+$stmtPlace->execute();
+$place = $stmtPlace->get_result()->fetch_assoc();
+
+if (!$place) {
+    die("Place not found");
+}
+
+// GET REVIEWS
 $sql = "SELECT Review.*, Users.username
         FROM Review
         JOIN Users ON Review.userID = Users.userID
@@ -19,16 +33,7 @@ $stmt->bind_param("i", $placeID);
 $stmt->execute();
 $reviews = $stmt->get_result();
 
-
-$sql2 = "SELECT AVG(rating) AS avgRating, COUNT(*) AS totalReviews FROM Review WHERE placeID = ?";
-$stmt2 = $conn->prepare($sql2);
-$stmt2->bind_param("i", $placeID);
-$stmt2->execute();
-$ratingData = $stmt2->get_result()->fetch_assoc();
-
-$avgRating = $ratingData['avgRating'] ? number_format($ratingData['avgRating'], 1) : "0.0";
-$totalReviews = $ratingData['totalReviews'];
-
+// GET AVERAGE RATING
 $sql2 = "SELECT AVG(rating) AS avgRating, COUNT(*) AS totalReviews
          FROM Review
          WHERE placeID = ?";
@@ -42,44 +47,13 @@ $avgRating = $ratingData['avgRating']
     : "0.0";
 
 $totalReviews = (int)$ratingData['totalReviews'];
-
-/*
-
-
-if (!isset($_GET['id'])) {
-    die("Missing place ID");
-}
-
-$placeID = intval($_GET['id']);
-
-
-$sql = "SELECT Review.*, User.username
-        FROM Review
-        JOIN User ON Review.userID = User.user_id
-        WHERE Review.placeID = ?
-        ORDER BY Review.reviewID DESC";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $placeID);
-$stmt->execute();
-$reviews = $stmt->get_result();
-
-
-$sql2 = "SELECT AVG(rating) AS avgRating, COUNT(*) AS totalReviews FROM Review WHERE placeID = ?";
-$stmt2 = $conn->prepare($sql2);
-$stmt2->bind_param("i", $placeID);
-$stmt2->execute();
-$ratingData = $stmt2->get_result()->fetch_assoc();
-
-$avgRating = $ratingData['avgRating'] ? number_format($ratingData['avgRating'], 1) : "0.0";
-$totalReviews = $ratingData['totalReviews'];*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Castle Hill - Discoverly</title>
+  <title><?= htmlspecialchars($place['name']) ?> - Discoverly</title>
 
   <link rel="stylesheet" href="../css/pages_layout.css" />
     <link rel="stylesheet" href="../css/base.css" />
@@ -105,15 +79,15 @@ $totalReviews = $ratingData['totalReviews'];*/
       include __DIR__ . "/../partials/header_sites.php";
     ?>
 
-<img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?w=1600"
-     alt="Castle Hill"
+<img src="<?= htmlspecialchars($place['photos']) ?>"
+     alt="<?= htmlspecialchars($place['name']) ?>"
      class="hero-image">
 
 <main>
   <div class="detail-header">
     <div class="title-section">
-      <h2>Castle Hill</h2>
-      <span class="category-tag">Historic Sight</span>
+      <h2><?= htmlspecialchars($place['name']) ?></h2>
+      <span class="category-tag"><?= htmlspecialchars($place['type']) ?></span>
     </div>
     <button class="btn-save" onclick="showLoginModal()">Add to My List</button>
   </div>
@@ -122,7 +96,7 @@ $totalReviews = $ratingData['totalReviews'];*/
     <div class="map-section">
       <div class="map-card">
         <h3>Location</h3>
-        <p class="muted">Castle Hill Road 1, Old Town</p>
+        <p class="muted"><?= htmlspecialchars($place['address']) ?></p>
         <div id="map"></div>
 
         <button class="btn-save" style="margin-top:1rem;" onclick="showUserLocation()">Show my location</button>
@@ -133,20 +107,19 @@ $totalReviews = $ratingData['totalReviews'];*/
     <div class="info-side">
       <div class="info-section">
         <h3>About</h3>
-        <p>A stunning medieval fortress perched atop the highest hill in the old town, Castle Hill offers breathtaking panoramic views of the entire city and surrounding countryside. Originally built in the 13th century as a defensive stronghold, the castle has been meticulously preserved and now houses a fascinating museum showcasing the region's rich history.</p>
-        <p>Visitors can explore the castle's towers, walk along the ancient ramparts, and discover hidden courtyards. The on-site museum features archaeological finds, medieval weapons, and interactive exhibits that bring history to life.</p>
+        <p><?= nl2br(htmlspecialchars($place['about'])) ?></p>
       </div>
 
       <div class="info-section">
         <h3>Quick Info</h3>
-        <div class="info-item"><span class="info-icon"></span><span><strong>Address:</strong> Castle Hill Road 1, Old Town</span></div>
-        <div class="info-item"><span class="info-icon"></span><span><strong>Hours:</strong> Daily 9:00 AM - 6:00 PM (Apr-Oct), 10:00 AM - 4:00 PM (Nov-Mar)</span></div>
-        <div class="info-item"><span class="info-icon"></span><span><strong>Price:</strong> €12 adults, €6 students, Free under 12</span></div>
-        <div class="info-item"><span class="info-icon"></span><span><strong>Contact:</strong> +386 1 234 5678</span></div>
-        <div class="info-item"><span class="info-icon"></span><span><strong>Website:</strong> <a href="#" class="link-accent">www.castlehill.com</a></span></div>
-        <div class="info-item"><span class="info-icon"></span><span><strong>Accessibility:</strong> Partial wheelchair access, elevator to main courtyard</span></div>
-        <div class="info-item"><span class="info-icon"></span><span><strong>Rating:</strong> 4.8 average</span></div>
-        <div class="info-item"><span class="info-icon"></span><span><strong>Duration:</strong> Allow 2-3 hours</span></div>
+        <div class="info-item"><span class="info-icon"></span><span><strong>Address:</strong> <?= htmlspecialchars($place['address']) ?></span></div>
+        <div class="info-item"><span class="info-icon"></span><span><strong>Hours:</strong> <?= htmlspecialchars($place['hours']) ?></span></div>
+        <div class="info-item"><span class="info-icon"></span><span><strong>Price:</strong> €<?= htmlspecialchars($place['price']) ?></span></div>
+        <div class="info-item"><span class="info-icon"></span><span><strong>Contact:</strong> <?= htmlspecialchars($place['contact']) ?></span></div>
+        <div class="info-item"><span class="info-icon"></span><span><strong>Website:</strong> <a href="<?= htmlspecialchars($place['website']) ?>" class="link-accent"><?= htmlspecialchars($place['website']) ?></a></span></div>
+        <div class="info-item"><span class="info-icon"></span><span><strong>Accessibility:</strong> <?= htmlspecialchars($place['accessibility']) ?></span></div>
+        <div class="info-item"><span class="info-icon"></span><span><strong>Rating:</strong> <?= $avgRating ?> average</span></div>
+        <div class="info-item"><span class="info-icon"></span><span><strong>Duration:</strong> Allow <?= htmlspecialchars($place['duration']) ?> hours</span></div>
       </div>
     </div>
   </div>
@@ -228,7 +201,7 @@ $totalReviews = $ratingData['totalReviews'];*/
   </div>
 </div>
 
-<!-- Review Modal (Upgraded structure) -->
+<!-- Review Modal -->
 <div id="reviewFormContainer" class="review-modal" aria-hidden="true">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="reviewTitle">
     <button type="button" class="modal-close" aria-label="Close review form" onclick="closeReviewForm()">✕</button>

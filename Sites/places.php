@@ -49,7 +49,7 @@ session_start();
 
       <div class="places-grid">
         <!-- Restaurants -->
-        <a href="place-detail.html" class="place-card filterDiv restaurants show" data-category="restaurant">
+        <a href="../pages-layout/page_layout.php?placeID=2" class="place-card filterDiv restaurants show" data-category="restaurant">
           <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600" alt="Traditional Tavern" class="place-image">
           <div class="place-content">
             <h3>The Old Town Tavern</h3>
@@ -77,7 +77,7 @@ session_start();
         </a>
 
         <!-- Cafés -->
-        <a href="place-detail.html" class="place-card filterDiv cafes show" data-category="cafe">
+        <a href="../pages-layout/page_layout.php?placeID=3" class="place-card filterDiv cafes show" data-category="cafe">
           <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600" alt="Alchemist Café" class="place-image">
           <div class="place-content">
             <h3>The Alchemist's Café</h3>
@@ -105,7 +105,7 @@ session_start();
         </a>
 
         <!-- Historic Sights -->
-        <a href="../pages-layout/page_layout.php" class="place-card filterDiv historic-sights show" data-category="historic">
+        <a href="../pages-layout/page_layout.php?placeID=1" class="place-card filterDiv historic-sights show" data-category="historic">
           <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?w=600" alt="Castle" class="place-image">
           <div class="place-content">
             <h3>Castle Hill</h3>
@@ -133,7 +133,7 @@ session_start();
         </a>
 
         <!-- Museums -->
-        <a href="place-detail.html" class="place-card filterDiv museums show" data-category="museum">
+        <a href="../pages-layout/page_layout.php?placeID=4" class="place-card filterDiv museums show" data-category="museum">
           <img src="https://images.unsplash.com/photo-1565098772267-60af42b81ef2?w=600" alt="Art Museum" class="place-image">
           <div class="place-content">
             <h3>National Gallery</h3>
@@ -161,7 +161,7 @@ session_start();
         </a>
 
         <!-- Parks -->
-        <a href="place-detail.html" class="place-card filterDiv parks show" data-category="park">
+        <a href="../pages-layout/page_layout.php?placeID=5" class="place-card filterDiv parks show" data-category="park">
           <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600" alt="Monastery Gardens" class="place-image">
           <div class="place-content">
             <h3>Monastery Gardens</h3>
