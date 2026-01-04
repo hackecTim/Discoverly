@@ -28,9 +28,9 @@ $result_places = $stmt_places->get_result();
 
 $sql_places2 = "
   SELECT Place.*
-  FROM wishlist
-  JOIN Place ON wishlist.placeID = Place.placeID
-  WHERE wishlist.userID = ?
+  FROM Wishlist
+  JOIN Place ON Wishlist.placeID = Place.placeID
+  WHERE Wishlist.userID = ?
 ";
 
 $stmt_places2 = $conn->prepare($sql_places2);
@@ -41,7 +41,7 @@ $result_places2 = $stmt_places2->get_result();
 //User stats
 $stmt = $conn->prepare("
     SELECT COUNT(*) AS total 
-    FROM wishlist 
+    FROM Wishlist 
     WHERE userID = ?
 ");
 $stmt->bind_param("i", $userID);
@@ -61,7 +61,7 @@ $reviewsCount = $stmt->get_result()->fetch_assoc()['total'];
 
 $stmt = $conn->prepare("
     SELECT COUNT(*) AS total 
-    FROM  wishlist
+    FROM  Wishlist
     WHERE userID = ?");
 $stmt->bind_param("i", $userID);
 $stmt->execute();
