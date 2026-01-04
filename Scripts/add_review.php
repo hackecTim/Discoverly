@@ -17,7 +17,7 @@ if ($rating < 1 || $rating > 5) {
     exit();
 }
 
-$sql = "INSERT INTO review (userID, placeID, rating, comment) VALUES (?,?,?,?)";
+$sql = "INSERT INTO Review (userID, placeID, rating, comment) VALUES (?,?,?,?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("iiis", $userID, $placeID, $rating, $comment);
 $stmt->execute();
@@ -25,3 +25,4 @@ $stmt->execute();
 header("Location: ../pages-layout/page_layout.php?id=$placeID&review=success");
 exit();
 ?>
+
