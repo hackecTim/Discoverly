@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS Activity (
 $userID = $conn->insert_id;
 echo "✅ User created! ID: $userID<br><br>";*/
 
+$userID = 1;
+
 $conn->query("
 INSERT INTO Place (userID, type, name, location, about, address, hours, price, contact, website, accessibility, duration, photos, latitude, longitude) VALUES
 ($userID, 'Restaurant', 'The Old Town Tavern', 'Old Town', 'Family-run restaurant serving traditional dishes for three generations.', 'Old Town Square 5', 'Daily 11:00 AM - 11:00 PM', '€€', '+386 1 999 1111', 'https://www.oldtowntavern.com', 'Full wheelchair access', 2, 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600', 46.0514, 14.5060),
