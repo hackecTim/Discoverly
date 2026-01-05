@@ -101,9 +101,9 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-L.marker([51.5, -0.09])
+L.marker([placeData.lat, placeData.lng])
   .addTo(map)
-  .bindPopup("Castle Hill Road 1, Old Town")
+  .bindPopup(placeData.address)
   .openPopup();
 
 // https://leafletjs.com/examples/quick-start/
@@ -165,7 +165,7 @@ function routeToLocation() {
   routeControl = L.Routing.control({
     waypoints: [
       L.latLng(userLat, userLon), // start - user location
-      L.latLng(51.5, -0.09), // end - destination location
+      L.latLng(placeData.lat, placeData.lng), // end - destination location
     ],
     routeWhileDragging: false,
     createMarker: function () {
