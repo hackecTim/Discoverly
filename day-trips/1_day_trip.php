@@ -1,3 +1,36 @@
+<?php
+$conn = new mysqli("localhost", "root", "Root123!@#", "discoverly");
+
+$placeIDs = [1, 2, 4, 7, 8, 9, 10, 13]; 
+
+$placeholders = implode(',', array_fill(0, count($placeIDs), '?'));
+$sql = "SELECT placeID, name, latitude, longitude FROM Place WHERE placeID IN ($placeholders)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param(str_repeat('i', count($placeIDs)), ...$placeIDs);
+$stmt->execute();
+$places = $stmt->get_result();
+
+$coordinates = [];
+while ($row = $places->fetch_assoc()) {
+    $coordinates[] = [
+        'name' => $row['name'],
+        'lat' => $row['latitude'],
+        'lng' => $row['longitude']
+    ];
+}
+
+$activitySql = "SELECT name, latitude, longitude FROM Activity WHERE activityID = 1";
+$activityResult = $conn->query($activitySql);
+$activity = $activityResult->fetch_assoc();
+if ($activity) {
+    $coordinates[] = [
+        'name' => $activity['name'],
+        'lat' => $activity['latitude'],
+        'lng' => $activity['longitude']
+    ];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -208,35 +241,42 @@ crossorigin=""></script>
 <h3>Morning (9:00 AM - 12:00 PM)</h3>
 </div>
 <div class="stops-container">
-<div class="stop-card">
-<div class="stop-number">1</div>
-<div class="stop-content">
-<h4>Sunday Flea Market</h4>
-<p class="stop-time">9:00 AM - 10:30 AM</p>
-<p class="stop-description">Start your day at the vibrant Sunday flea market. Browse vintage treasures, handmade crafts, and local goods while soaking in the lively atmosphere.</p>
-<span class="stop-tag">Market</span>
-</div>
-</div>
+<a href="../pages-layout/activity_layout.php?activityID=1" style="text-decoration: none; color: inherit;">
+  <div class="stop-card">
+    <div class="stop-number">1</div>
+    <div class="stop-content">
+      <h4>Sunday Flea Market</h4>
+      <p class="stop-time">9:00 AM - 10:30 AM</p>
+      <p class="stop-description">Start your day at the vibrant Sunday flea market.</p>
+      <span class="stop-tag">Market</span>
+    </div>
+  </div>
+</a>
 
-<div class="stop-card">
-<div class="stop-number">2</div>
-<div class="stop-content">
-<h4>The Alchemist's Café</h4>
-<p class="stop-time">10:45 AM - 11:30 AM</p>
-<p class="stop-description">Take a coffee break at this cozy cellar café. Try their famous hot chocolate and homemade apple strudel.</p>
-<span class="stop-tag">Café</span>
-</div>
-</div>
 
-<div class="stop-card">
-<div class="stop-number">3</div>
-<div class="stop-content">
-<h4>Old Market Square</h4>
-<p class="stop-time">11:30 AM - 12:00 PM</p>
-<p class="stop-description">Stroll through the colorful baroque square, perfect for photos and people-watching.</p>
-<span class="stop-tag">Historic Sight</span>
-</div>
-</div>
+<a href="../pages-layout/page_layout.php?placeID=4" style="text-decoration: none; color: inherit;">
+  <div class="stop-card">
+    <div class="stop-number">2</div>
+    <div class="stop-content">
+      <h4>The Alchemist's Café</h4>
+      <p class="stop-time">10:45 AM - 11:30 AM</p>
+      <p class="stop-description">Take a coffee break at this cozy cellar café. Try their famous hot chocolate and homemade apple strudel.</p>
+      <span class="stop-tag">Café</span>
+    </div>
+  </div>
+</a>
+
+<a href="../pages-layout/page_layout.php?placeID=9" style="text-decoration: none; color: inherit;">
+  <div class="stop-card">
+    <div class="stop-number">3</div>
+    <div class="stop-content">
+      <h4>St. Nicholas Cathedral</h4>
+      <p class="stop-time">11:30 AM - 12:00 PM</p>
+      <p class="stop-description">13th century cathedral with stunning baroque interiors and bell tower views.</p>
+      <span class="stop-tag">Historic Sight</span>
+    </div>
+  </div>
+</a>
 </div>
 </div>
 
@@ -246,35 +286,43 @@ crossorigin=""></script>
 <h3>Afternoon (12:00 PM - 5:00 PM)</h3>
 </div>
 <div class="stops-container">
-<div class="stop-card">
-<div class="stop-number">4</div>
-<div class="stop-content">
-<h4>River View Bistro</h4>
-<p class="stop-time">12:30 PM - 2:00 PM</p>
-<p class="stop-description">Enjoy lunch with stunning riverside views. Try the seasonal menu featuring local ingredients.</p>
-<span class="stop-tag">Restaurant</span>
-</div>
-</div>
 
-<div class="stop-card">
-<div class="stop-number">5</div>
-<div class="stop-content">
-<h4>Castle Hill</h4>
-<p class="stop-time">2:30 PM - 4:30 PM</p>
-<p class="stop-description">Visit the medieval fortress for panoramic city views. Explore the museum and walk the ancient ramparts.</p>
-<span class="stop-tag">Historic Sight</span>
-</div>
-</div>
+<a href="../pages-layout/page_layout.php?placeID=2" style="text-decoration: none; color: inherit;">
+  <div class="stop-card">
+    <div class="stop-number">4</div>
+    <div class="stop-content">
+      <h4>River View Bistro</h4>
+      <p class="stop-time">12:30 PM - 2:00 PM</p>
+      <p class="stop-description">Enjoy lunch with stunning riverside views. Try the seasonal menu featuring local ingredients.</p>
+      <span class="stop-tag">Restaurant</span>
+    </div>
+  </div>
+</a>
 
-<div class="stop-card">
-<div class="stop-number">6</div>
-<div class="stop-content">
-<h4>Monastery Gardens</h4>
-<p class="stop-time">4:45 PM - 5:30 PM</p>
-<p class="stop-description">Relax in these peaceful hidden gardens with rare herbs and a meditation labyrinth.</p>
-<span class="stop-tag">Park</span>
-</div>
-</div>
+<a href="../pages-layout/page_layout.php?placeID=7" style="text-decoration: none; color: inherit;">
+  <div class="stop-card">
+    <div class="stop-number">5</div>
+    <div class="stop-content">
+      <h4>Castle Hill</h4>
+      <p class="stop-time">2:30 PM - 4:30 PM</p>
+      <p class="stop-description">Visit the medieval fortress for panoramic city views. Explore the museum and walk the ancient ramparts.</p>
+      <span class="stop-tag">Historic Sight</span>
+    </div>
+  </div>
+</a>
+
+<a href="../pages-layout/page_layout.php?placeID=13" style="text-decoration: none; color: inherit;">
+  <div class="stop-card">
+    <div class="stop-number">6</div>
+    <div class="stop-content">
+      <h4>Monastery Gardens</h4>
+      <p class="stop-time">4:45 PM - 5:30 PM</p>
+      <p class="stop-description">Relax in these peaceful hidden gardens with rare herbs and a meditation labyrinth.</p>
+      <span class="stop-tag">Park</span>
+    </div>
+  </div>
+</a>
+
 </div>
 </div>
 
@@ -284,55 +332,99 @@ crossorigin=""></script>
 <h3>Evening (6:00 PM - 10:00 PM)</h3>
 </div>
 <div class="stops-container">
-<div class="stop-card">
-<div class="stop-number">7</div>
-<div class="stop-content">
-<h4>Dragon Bridge</h4>
-<p class="stop-time">6:00 PM - 6:30 PM</p>
-<p class="stop-description">Watch the sunset from this iconic Art Nouveau bridge adorned with dragon statues.</p>
-<span class="stop-tag">Historic Sight</span>
-</div>
-</div>
 
-<div class="stop-card">
-<div class="stop-number">8</div>
-<div class="stop-content">
-<h4>The Old Town Tavern</h4>
-<p class="stop-time">7:00 PM - 9:00 PM</p>
-<p class="stop-description">End your day with traditional dinner at this family-run restaurant. Try their legendary goulash.</p>
-<span class="stop-tag">Restaurant</span>
-</div>
-</div>
+<a href="../pages-layout/page_layout.php?placeID=8" style="text-decoration: none; color: inherit;">
+  <div class="stop-card">
+    <div class="stop-number">7</div>
+    <div class="stop-content">
+      <h4>Dragon Bridge</h4>
+      <p class="stop-time">6:00 PM - 6:30 PM</p>
+      <p class="stop-description">Watch the sunset from this iconic Art Nouveau bridge adorned with dragon statues.</p>
+      <span class="stop-tag">Historic Sight</span>
+    </div>
+  </div>
+</a>
 
-<div class="stop-card">
-<div class="stop-number">9</div>
-<div class="stop-content">
-<h4>Jazz Night at The Cellar</h4>
-<p class="stop-time">9:30 PM - 11:00 PM</p>
-<p class="stop-description">Optional: Catch live jazz music in an intimate underground venue to cap off your perfect day.</p>
-<span class="stop-tag">Nightlife</span>
-</div>
-</div>
+<a href="../pages-layout/page_layout.php?placeID=1" style="text-decoration: none; color: inherit;">
+  <div class="stop-card">
+    <div class="stop-number">8</div>
+    <div class="stop-content">
+      <h4>The Old Town Tavern</h4>
+      <p class="stop-time">7:00 PM - 9:00 PM</p>
+      <p class="stop-description">End your day with traditional dinner at this family-run restaurant. Try their legendary goulash.</p>
+      <span class="stop-tag">Restaurant</span>
+    </div>
+  </div>
+</a>
+
+<a href="../pages-layout/page_layout.php?placeID=10" style="text-decoration: none; color: inherit;">
+  <div class="stop-card">
+    <div class="stop-number">9</div>
+    <div class="stop-content">
+      <h4>National Gallery</h4>
+      <p class="stop-time">9:30 PM - 11:00 PM</p>
+      <p class="stop-description">Optional: Visit the evening art exhibition featuring local and international art from medieval to modern.</p>
+      <span class="stop-tag">Museum</span>
+    </div>
+  </div>
+</a>
+
 </div>
 </div>
 
 <div class="map-section">
 <h3>Your Route Map</h3>
 <div id="map"></div>
-</div>
 </main>
 <script>
-//trying out lj coordinates
 var map = L.map('map').setView([46.0569, 14.5058], 13); 
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-L.marker([46.0569, 14.5058]).addTo(map)
-    .bindPopup('Castle Hill');
 
-// https://leafletjs.com/examples/quick-start/ -> tutorial for the map, will need to add exact locations 
+var coordinates = <?= json_encode($coordinates) ?>;
+
+var routePoints = [];
+
+// adding numbers and markers for each place
+coordinates.forEach(function(place, index) {
+    if (place.lat && place.lng) {
+        var stopNumber = index + 1;
+        
+        // creating the marker
+        var numberIcon = L.divIcon({
+            className: 'custom-marker',
+            html: `<div style="background-color: #1e3a5f; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">${stopNumber}</div>`,
+            iconSize: [35, 35],
+            iconAnchor: [17, 17]
+        });
+        
+        // adding the marker 
+        L.marker([place.lat, place.lng], {icon: numberIcon})
+            .addTo(map)
+            .bindPopup(`<b>${stopNumber}. ${place.name}</b>`);
+        
+        // saving it's position 
+        routePoints.push([place.lat, place.lng]);
+    }
+});
+
+// drawing a line to connect all markers
+if (routePoints.length > 1) {
+    L.polyline(routePoints, {
+        color: '#1e3a5f',
+        weight: 3,
+        opacity: 0.7,
+        dashArray: '10, 5'
+    }).addTo(map);
+}
+
+// adjusting the map so that we can see all the markers 
+if (routePoints.length > 0) {
+    map.fitBounds(routePoints);
+}
 </script>
 
 </body>
