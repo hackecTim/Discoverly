@@ -68,13 +68,13 @@ if (isset($_SESSION['userID'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?= htmlspecialchars($place['name']) ?> - Discoverly</title>
 
-  <link rel="stylesheet" href="../css/pages_layout.css" />
-    <link rel="stylesheet" href="../css/base.css" />
-
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    
+  <link rel="stylesheet" href="../css/pages_layout.css" />
+  <link rel="stylesheet" href="../css/base.css" />
 
   <!-- getting the locations and to js --> 
   <script>
@@ -89,7 +89,6 @@ if (isset($_SESSION['userID'])) {
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
           crossorigin=""></script>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
   <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
   <script src="../Scripts/base.js" defer></script>
   <script src="./page_layout.js" defer></script>
