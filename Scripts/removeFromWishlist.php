@@ -10,7 +10,7 @@ if (!isset($_SESSION['userID'])) {
 $userID = $_SESSION['userID'];
 $placeID = (int)$_POST['placeID'];
 
-$sql = "DELETE FROM wishlist WHERE userID = ? AND placeID = ?";
+$sql = "DELETE FROM Wishlist WHERE userID = ? AND placeID = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ii", $userID, $placeID);
 $stmt->execute();
