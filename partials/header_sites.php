@@ -14,7 +14,6 @@ $pill = $pill ?? '';
 
     <nav class="site-nav" id="siteNav">
       <a href="../index.php" class="<?= $current==='home'?'is-active':'' ?>">Home</a>
-      <a href="../Sites/hub.php" class="<?= $current==='hub'?'is-active':'' ?>">Plan Your Trip</a>
 
       <?php if (isset($_SESSION['userID'])): ?>
         <a href="../Sites/user-profile.php" class="<?= $current==='profile'?'is-active':'' ?>">My Profile</a>

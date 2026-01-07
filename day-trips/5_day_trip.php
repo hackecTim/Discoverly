@@ -10,16 +10,9 @@
 
 </head>
 <body>
-<header>
-<h1>Discoverly</h1>
-<nav>
-<a href="../index.php">Home</a>
-<a href="../Sites/login.php">Log In</a>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-crossorigin=""/>
-</nav>
-</header>
+<?php
+      include __DIR__ . "/../partials/header_sites.php";
+    ?>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
 integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
 crossorigin=""></script>
