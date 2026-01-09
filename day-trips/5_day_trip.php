@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/5_day_trip.css" />
-
+  <script src="../Scripts/base.js" defer></script>
 </head>
 <body>
 <?php

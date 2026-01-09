@@ -1,4 +1,4 @@
-<?php 
+<?php
 $conn = new mysqli("localhost", "root", "Root123!@#", "discoverly");
 
 $placeIDs = [1, 2, 4, 7, 8, 9, 10, 13]; 
@@ -40,6 +40,7 @@ if ($activity) {
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="../css/1_day_trip.css" />
     <link rel="stylesheet" href="../css/base.css" />
+    <script src="../Scripts/base.js" defer></script>
 </head>
 <body>
 
