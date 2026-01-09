@@ -60,13 +60,13 @@ include "../Scripts/Config.php";
 
                 $shortAbout = strlen($about) > 100 ? substr($about, 0, 100) . '...' : $about;
 
-                if ($price == "0" || empty($price)) {
+                if (strtolower($price) == "free" || $price == "0" || empty($price)) {
                   $priceClass = "activity-price free";
                   $priceDisplay = "Free";
-              } else {
-                  $priceClass = "activity-price";
-                  $priceDisplay = htmlspecialchars($price);
-              }
+                } else {
+                    $priceClass = "activity-price";
+                    $priceDisplay = htmlspecialchars($price);
+                }
                 
                 echo "
                 <a href=\"../pages-layout/page_layout.php?placeID={$placeID}\" class=\"activity-card\">
