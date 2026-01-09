@@ -15,7 +15,7 @@ if (!isset($_SESSION['userID'])) {
 <title>Create New Place - Discoverly</title>
 <link rel="stylesheet" href="../css/base.css">
 <link rel="stylesheet" href="../css/createExp.css">
-<script src="../Scripts/createExp.js"></script> 
+<script src="../Scripts/createEXP.js"></script> 
   <script src="../Scripts/base.js" defer></script>
 
 </head>
@@ -114,6 +114,7 @@ if (!isset($_SESSION['userID'])) {
 
 </body>
 </html>
+
 
 
 
