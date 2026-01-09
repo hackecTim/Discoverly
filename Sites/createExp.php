@@ -96,6 +96,15 @@ if (!isset($_SESSION['userID'])) {
             <input type="file" name="photos[]" multiple accept="image/*">
         </div>
 
+        <input type="hidden" name="latitude" required>
+        <input type="hidden" name="longitude" required>
+
+        <div class="form-group">
+            <label>Select location on map</label>
+            <div id="map"></div>
+            <small class="hint">Click on the map to choose the location</small>
+        </div>
+
         <button type="submit" class="btn">Create Place</button>
 
     </form>
@@ -105,6 +114,7 @@ if (!isset($_SESSION['userID'])) {
 
 </body>
 </html>
+
 
 
 
