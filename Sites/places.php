@@ -99,11 +99,13 @@ session_start();
                 ";
             }
         }
-        $conn->close();
         ?>
       </div>
     </main>
-<?php include __DIR__ . "/../partials/footer.php"; ?>
+<?php
+    $conn->close();
+    include __DIR__ . "/../partials/footer.php";
+?>
 
   </div>
 
