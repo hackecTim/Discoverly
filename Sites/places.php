@@ -63,7 +63,7 @@ include "../Scripts/Config.php";
 
       <div class="places-grid">
         <?php
-        $sql = "SELECT placeID, name, type, about, photos FROM Place WHERE type != 'Activity'";
+        $sql = "SELECT placeID, name, type, about, photos FROM Place WHERE type != 'Activity' ORDER BY RAND()";
         $result = $conn->query($sql);
 
         if ($result && $result->num_rows > 0) {
