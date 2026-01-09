@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "Root123!@#", "discoverly");
+$conn = new mysqli("localhost", "root", "", "discoverly");
 
 $placeIDs = [1, 2, 4, 7, 8, 9, 10, 13]; 
 
