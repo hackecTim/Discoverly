@@ -54,6 +54,9 @@ nav a {
 textarea {
     resize: none;
 }
+
+#map { height: 500px; border-radius: 12px; overflow: hidden; }
+
 @media (max-width: 600px) {
       header {
         flex-direction: column;
@@ -124,3 +127,4 @@ textarea {
     border-left: 4px solid #28a745;
     margin-bottom: 20px;
 }
+
