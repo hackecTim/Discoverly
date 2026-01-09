@@ -131,7 +131,7 @@ session_start();
         </div>
 
         <div class="scroll-container">
-          <a href="activity-flea.html" class="card">
+          <a href="../pages-layout/page_layout.php?placeID=16" class="card">
             <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=600" alt="Flea Market" class="card-image">
             <div class="card-content">
               <h3>Sunday Flea Market</h3>
@@ -139,7 +139,7 @@ session_start();
             </div>
           </a>
 
-          <a href="activity-food.html" class="card">
+          <a href="../pages-layout/page_layout.php?placeID=17" class="card">
             <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600" alt="Food Tour" class="card-image">
             <div class="card-content">
               <h3>Local Food Tour</h3>
@@ -147,7 +147,7 @@ session_start();
             </div>
           </a>
 
-          <a href="activity-bike.html" class="card">
+          <a href="../pages-layout/page_layout.php?placeID=18" class="card">
             <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=600" alt="Bike Tour" class="card-image">
             <div class="card-content">
               <h3>Riverside Bike Tour</h3>
@@ -155,7 +155,7 @@ session_start();
             </div>
           </a>
 
-          <a href="activity-wine.html" class="card">
+          <a href="../pages-layout/page_layout.php?placeID=19" class="card">
             <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600" alt="Wine Tasting" class="card-image">
             <div class="card-content">
               <h3>Wine Cellar Visit</h3>
