@@ -164,7 +164,7 @@ if (isset($_SESSION['userID'])) {
         <div class="info-item"><span class="info-icon"></span><span><strong>Contact:</strong> <?= htmlspecialchars($place['contact']) ?></span></div>
         <div class="info-item"><span class="info-icon"></span><span><strong>Website:</strong> <a href="<?= htmlspecialchars($place['website']) ?>" class="link-accent"><?= htmlspecialchars($place['website']) ?></a></span></div>
         <div class="info-item"><span class="info-icon"></span><span><strong>Accessibility:</strong> <?= htmlspecialchars($place['accessibility']) ?></span></div>
-        <div class="info-item"><span class="info-icon"></span><span><strong>Rating:</strong> <?= $avgRating ?> average</span></div>
+        <div class="info-item"><span class="info-icon"></span><span><strong>Rating:</strong> <?= $avgRating === "0.0" ? 'No ratings yet' : $avgRating . ' average' ?></span></div>
         <div class="info-item"><span class="info-icon"></span><span><strong>Duration:</strong> Allow <?= htmlspecialchars($place['duration']) ?> hours</span></div>
       </div>
     </div>
