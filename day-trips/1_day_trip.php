@@ -63,7 +63,7 @@ crossorigin=""></script>
 <h3>Morning (9:00 AM - 12:00 PM)</h3>
 </div>
 <div class="stops-container">
-<a href="../pages-layout/activity_layout.php?activityID=1" style="text-decoration: none; color: inherit;">
+<a href="../pages-layout/page_layout.php?placeID=16" style="text-decoration: none; color: inherit;">
   <div class="stop-card">
     <div class="stop-number">1</div>
     <div class="stop-content">
