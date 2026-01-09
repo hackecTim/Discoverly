@@ -48,7 +48,7 @@ INSERT INTO Place (userID, type, name, location, about, address, hours, price, c
 
 ($userID, 'Museum', 'City History Museum', 'City Center', 'Interactive exhibits showcasing the town\'s evolution through centuries.', 'History Lane 8', 'Wednesday-Monday 9:00 AM - 5:00 PM', '€', '+386 1 666 7777', 'https://www.cityhistorymuseum.com', 'Full wheelchair access', 2, 'https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=600', 46.0522, 14.5075),
 
-($userID, 'Museum', 'Museum of Contemporary Art', 'Museum District', 'Cutting-edge exhibitions featuring local and international contemporary artists.', 'Modern Street 15', 'Tuesday-Sunday 11:00 AM - 7:00 PM', '€€', '+386 1 888 9999', 'https://www.contemporaryart.com', 'Full wheelchair access', 2, 'https://images.unsplash.com/photo-1578672899664-c5c9c2b2cde4?w=600', 46.0535, 14.5095),
+($userID, 'Museum', 'Museum of Contemporary Art', 'Museum District', 'Cutting-edge exhibitions featuring local and international contemporary artists.', 'Modern Street 15', 'Tuesday-Sunday 11:00 AM - 7:00 PM', '€€', '+386 1 888 9999', 'https://www.contemporaryart.com', 'Full wheelchair access', 2, 'https://images.unsplash.com/photo-1766289496607-9041758db6c6?w=600', 46.0535, 14.5095),
 
 ($userID, 'Park', 'Monastery Gardens', 'Old Town', 'Hidden botanical gardens with rare herbs and peaceful meditation labyrinth.', 'Monastery Road 8', 'Daily 7:00 AM - 7:00 PM', 'Free', '+386 1 666 7777', 'https://www.monasterygardens.com', 'Partial access (gravel paths)', 2, 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600', 46.0510, 14.5050),
 
