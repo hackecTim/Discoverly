@@ -44,7 +44,7 @@ include "../Scripts/Config.php";
 
       <div class="activities-grid">
         <?php
-        $sql = "SELECT placeID, name, about, price, photos FROM Place WHERE type = 'Activity'";
+        $sql = "SELECT placeID, name, about, price, photos FROM Place WHERE type = 'Activity' ORDER BY RAND()";
         $result = $conn->query($sql);
 
         if ($result && $result->num_rows > 0) {
