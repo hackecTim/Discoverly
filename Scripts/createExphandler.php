@@ -17,6 +17,8 @@ $contact = $_POST['contact'];
 $website = $_POST['website'];
 $accessibility = $_POST['accessibility'];
 $duration = $_POST['duration'];
+$latitude = $_POST['latitude'];
+$longitude = $_POST['longitude'];
 
 
 $photoPaths = [];
@@ -43,11 +45,11 @@ $photos_string = implode(",", $photoPaths);
 
 $user_id = $_SESSION['userID'];
 
-$sql = "INSERT INTO Place (userID, type, name, location, about, address, hours, price, contact, website, accessibility, duration, photos)
-        VALUES (?, ?, ?, NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO Place (userID, type, name, location, about, address, hours, price, contact, website, accessibility, duration, photos, latitude, longitude)
+        VALUES (?, ?, ?, NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("isssssisssis",
+$stmt->bind_param("isssssisssisdd",
     $user_id,
     $type,
     $name,
@@ -59,7 +61,9 @@ $stmt->bind_param("isssssisssis",
     $website,
     $accessibility,
     $duration,
-    $photos_string
+    $photos_string,
+    $latitude,
+    $longitude
 );
 
 if ($stmt->execute()) {
@@ -69,4 +73,5 @@ if ($stmt->execute()) {
     die("Database error: " . $stmt->error);
 }
 ?>
+
 
