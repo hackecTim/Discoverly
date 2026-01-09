@@ -62,7 +62,7 @@ session_start();
 
       <div class="places-grid">
         <?php
-        $sql = "SELECT placeID, name, type, about, photos FROM Place ORDER BY name ASC";
+        $sql = "SELECT placeID, name, type, about, photos FROM Place WHERE type != 'Activity' ORDER BY name ASC";
         $result = $conn->query($sql);
 
         if ($result && $result->num_rows > 0) {
