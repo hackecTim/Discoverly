@@ -36,7 +36,7 @@ if (!empty($_FILES['photos']['name'][0])) {
         $filePath = $uploadDir . $fileName;
 
         if (move_uploaded_file($tmpName, $filePath)) {
-            $photoPaths[] = "uploads_places/" . $fileName;
+            $photoPaths[] = "../uploads_places/" . $fileName;
         }
     }
 }
@@ -73,6 +73,7 @@ if ($stmt->execute()) {
     die("Database error: " . $stmt->error);
 }
 ?>
+
 
 
 
