@@ -49,7 +49,7 @@ $sql = "INSERT INTO Place (userID, type, name, location, about, address, hours, 
         VALUES (?, ?, ?, NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("isssssisssisdd",
+$stmt->bind_param("isssssssssssdd",
     $user_id,
     $type,
     $name,
